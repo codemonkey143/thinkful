@@ -33,18 +33,18 @@ def customer_preferences(questions):
                 break
     return preferences
         
-customer_preferences(questions)
-
 
 #Q :Write a function to construct a drink
-def  construct_drink(preferences):
+def  customized_drink(preferences):
     drink = []
     for key in preferences:
         if preferences[key] == 'True':
             drink.append(ingredients[key])
+    print ("Hey customer_preferences drink {}:".format(customized_drink.__name__))
     return random.choice(drink)
+    
             
             
-# Calling methods
-customer_preferences(questions)
-construct_drink(preferences)
+if __name__ == '__main__':
+    customer_preferences(questions)
+    print(customized_drink(preferences))
