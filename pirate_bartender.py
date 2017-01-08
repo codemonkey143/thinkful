@@ -33,7 +33,6 @@ def customer_preferences(questions):
                 break
     return preferences
         
-
 #Q :Write a function to construct a drink
 def  customized_drink(preferences):
     drink = []
@@ -43,8 +42,6 @@ def  customized_drink(preferences):
     print ("Hey customer_preferences drink {}:".format(customized_drink.__name__))
     return random.choice(drink)
     
-            
-            
 if __name__ == '__main__':
     customer_preferences(questions)
     print(customized_drink(preferences))
