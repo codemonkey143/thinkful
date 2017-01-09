@@ -40,30 +40,12 @@ def  customer_receipe(preferences):
     print (random.choice(drink))
     
             
-if __name__ == '__main__':
-    customer_preferences(questions)
-    customer_receipe(preferences)
-    while True:
-        acceptance = raw_input("do you want another drink YES/NO:").lower()
-        if acceptance == 'yes':
-            while True:
-                receipe = raw_input("do you want to try different receipe YES/NO:").lower()
-                if receipe == 'yes':
-                    customer_preferences(questions)
-                    customer_receipe(preferences)
-                elif receipe == 'no':
-                    customer_receipe(preferences)
-                    break
-        elif acceptance == 'no':
-            break
-    for key in preferences:
-        if preferences[key] == 'True':
-            drink.append(ingredients[key])
-    print ("Hey {}:".format(customer_receipe.__name__))
-    print (random.choice(drink))
-    
             
-            
+'''
+Multiple customers: The bartender could ask for the customer's name before they are served. 
+They could then remember the customer's preferences for when the same customer asks for another drink.
+'''
+
 if __name__ == '__main__':
     customer_preferences(questions)
     customer_receipe(preferences)
