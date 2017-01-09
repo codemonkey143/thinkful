@@ -51,8 +51,9 @@ if __name__ == '__main__':
             while True:
                 receipe = raw_input("do you want to try different receipe YES/NO:").lower()
                 if receipe == 'yes':
+                    name = raw_input("May I know your name:").lower()
                     customer_preferences(questions)
-                    customer_receipe(preferences)
+                    customer_names[name] = customer_receipe(preferences)
                 elif receipe == 'no':
                     receipe = raw_input("may I know you name:").lower()
                     for key in customer_names:
