@@ -1,12 +1,16 @@
-from bicycles import bikeshops,customers,bicycle
+from bicycles import bicycle
+from bikeshops import bikeshop
+from customers import customer
+from pandas import Series,DataFrame
 
 def main():
+    
     print ("Hey I am main method")
-    uday = bikeshops("racing",30,40,90)
+    uday = bikeshop("racing",30,40,90)
     uday.bicycle_model()
     uday.final_price()
 
-    uday = customers("racing",30,40)
+    uday = customer("racing",30,40)
     uday.customer_inventory()
     uday.purchased_bikes("uday",1800,"racing")
     uday.purchased_bikes("ramesh",1200,"folding")
