@@ -11,9 +11,6 @@ class Bicycle(object):
         print(self.cost)
         
         
-        
-        
-      
 class bikeshops(Bicycle):
     
    def __init__(self,modelName,inventory,margin,profit):
@@ -45,59 +42,18 @@ class bikeshops(Bicycle):
             "mountain-biking":15
             
         }
-        
-        
-        '''
-        for model in stock:
-            if name == model:
-                sellPrice = stock[model] + 0.5 * stock[model]
-                profit = sellPrice - stock[model]
-                print ("Total cost of:",model,"model bicycle:","$",sellPrice)
-                print ("Profit they made by selling that model:","$",profit)
-                print ("Total weight of ",model,"model bicycle:",weight[model],"lbs")
-        '''    
     
    def final_price(self):
        global updatedStock
        updatedStock = {}
-       
        for model in stock:
            updatedStock[model] = stock[model] + 0.5 * stock[model]
     
-       print ("-------------initial stock price -----------------------")
-       print (stock)
-       print ("-------------updated stock price------------------------")
-       print (updatedStock)
-       
+       print ("-------------initial stock price -----------------------"+"\n"+str(stock))
+       print ("-------------updated stock price------------------------"+"\n"+str(updatedStock))
        
    #ACICS
-   '''
-   def initial_inventory(self):
-       
-       initial_inventory_bike_list = []
-       initial_inventory_bike_dict = {}
-       
-       stock = {
-            "racing":1100,
-            "folding":700,
-            "BMX":900,
-            "human-powered":150,
-            "motor-assisted":900,
-            "mountain-biking":1000
-            
-        }
-        
-       weight = {
-            "racing":20,
-            "folding":30,
-            "BMX":25,
-            "human-powered":10,
-            "motor-assisted":45,
-            "mountain-biking":15
-            
-        }
-    '''   
-       
+   
 class customers(bikeshops):
     
     def __init__(self,name,fund,newbicycle):
@@ -105,8 +61,6 @@ class customers(bikeshops):
         self.fund = fund
         self.newbicycle = newbicycle
         
-        
-       
     def customer_inventory(self):
         customers = {"daniel":200,"david":500,"johny":1000}
         global customer_sheet
@@ -131,8 +85,8 @@ class customers(bikeshops):
                         customer_sheet[key1].append(list2)
         print ("each customer can affordable bellow:")
         for key in customer_sheet:
-            print ("customerName:" ,key,"\n",customer_sheet[key])
-        #print (customer_sheet)
+            print ("customerName:" + key + "\n" + str(customer_sheet[key]))
+        
         #print (key1,"has affordable to buy:","\n",key2,"\n","price is:",stock[key2] + 0.5 * stock[key2],"\n","seller_profit:",sellPrice - stock[key2])
     global totalProfit
     totalProfit = []
@@ -156,8 +110,6 @@ class customers(bikeshops):
                 print ('Profit they made by selling that model: {}'.format(profit))
                 print ('customer still have after purchase: ${}'.format(customerBalance))
                 print ('Total weight of {} bicycle: {}lb'.format(model,weight[model]))
-                 
-                #del stock[key]
         
     def total_profit(self):
         total = 0
@@ -165,8 +117,6 @@ class customers(bikeshops):
             total = total + num
         print ("------------------Total Profit After Selling 3 Bicycles-------")
         print ('Total Profit after selling three bikes:${}'.format(total)) 
-        #print (stock)
-        
         
     def remaining_stock(self):
         temp_stock = stock
@@ -174,9 +124,8 @@ class customers(bikeshops):
             for bike in selled_bicycles:
                 if key == bike:
                     del temp_stock[bike]
-        print ("-----------------remaining stock------------------")
-        print(temp_stock)
-                
+        print ("-----------------remaining stock------------------"+"\n"+temp_stock)
+        
     
 uday = bikeshops("racing",30,40,90)
 uday.bicycle_model()
