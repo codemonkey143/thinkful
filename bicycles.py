@@ -10,7 +10,6 @@ class Bicycle(object):
         print(self.weight)
         print(self.cost)
         
-        
 class bikeshops(Bicycle):
     
    def __init__(self,modelName,inventory,margin,profit):
@@ -18,8 +17,7 @@ class bikeshops(Bicycle):
         self.inventory = inventory
         self.margin = margin
         self.profit = profit
-        
-        
+   
    def bicycle_model(self):
         name = self.modelName.lower()
         global stock
@@ -124,7 +122,7 @@ class customers(bikeshops):
             for bike in selled_bicycles:
                 if key == bike:
                     del temp_stock[bike]
-        print ("-----------------remaining stock------------------"+"\n"+temp_stock)
+        print ("-----------------remaining stock------------------"+"\n"+str(temp_stock))
         
     
 uday = bikeshops("racing",30,40,90)
