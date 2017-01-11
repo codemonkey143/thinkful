@@ -1,4 +1,4 @@
-class Bicycle(object):
+class bicycle(object):
     
     def __init__(self,modelName,weight,cost):
         self.modelName = modelName
@@ -10,7 +10,7 @@ class Bicycle(object):
         print(self.weight)
         print(self.cost)
         
-class bikeshops(Bicycle):
+class bikeshops(bicycle):
     
    def __init__(self,modelName,inventory,margin,profit):
         self.modelName = modelName  
@@ -125,6 +125,7 @@ class customers(bikeshops):
         print ("-----------------remaining stock------------------"+"\n"+str(temp_stock))
         
     
+'''
 uday = bikeshops("racing",30,40,90)
 uday.bicycle_model()
 uday.final_price()
@@ -136,3 +137,5 @@ uday.purchased_bikes("ramesh",1200,"folding")
 uday.purchased_bikes("srinu",700,"human-powered")
 uday.total_profit()
 uday.remaining_stock()
+
+'''
