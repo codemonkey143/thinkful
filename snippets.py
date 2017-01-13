@@ -13,19 +13,42 @@ logging.debug("connected to PostgresSQL")
 def put(name, snippet):
     logging.info("Storing snippet {!r}{!r}".format(name,snippet))
     cursor = connection.cursor()
-    command = "insert into snippets values (%s, %s)"
-    cursor.execute(command,(name,snippet))
+    with connection,connection.cursor() as cursor:
+        try:
+            command = "insert into snippets values (%s, %s)"
+            cursor.execute(command,(name,snippet))
+        except psycopg2.IntegrityError as e:
+            connection.rollback()
+            command = "update snippets set message=%s where keyword=%s"
+     
+    '''        cursor.execute(command,(name,snippet))
+    try:
+        command = "insert into snippets values (%s, %s)"
+        cursor.execute(command,(name,snippet))
+    except psycopg2.IntegrityError as e:
+        connection.rollback()
+        command = "update snippets set message=%s where keyword=%s"
+        cursor.execute(command,(name,snippet))
     connection.commit()
+    '''
+    
     logging.debug("snippet stored successfully.")
     return name,snippet
     
 def get(name):
     logging.info("getting snippet {!r}".format(name))
+    '''
     cursor = connection.cursor()
     cursor.execute("select message from snippets where keyword=%s",(name,))
     row = cursor.fetchone()
-    connection.commit()
+    '''
+    with connection,connection.cursor() as cursor:
+        cursor.execute("select message from snippets where keyword=%s",(name,))
+        row = cursor.fetchone()
+    #connection.commit()
     logging.debug("snippet fetched successfully.")
+    if not row:
+        return "404: Snippet Not Found"
     return row[0]
     
 def main():
