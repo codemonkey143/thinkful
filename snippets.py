@@ -11,7 +11,6 @@ logging.debug("connected to PostgresSQL")
 
 
 def put(name, snippet):
-    #logging.error("hey fix me I am unimplemented- put({}{})".format(name,snippet))
     logging.info("Storing snippet {!r}{!r}".format(name,snippet))
     cursor = connection.cursor()
     command = "insert into snippets values (%s, %s)"
@@ -20,13 +19,15 @@ def put(name, snippet):
     logging.debug("snippet stored successfully.")
     return name,snippet
     
-    
 def get(name):
-    #logging.error("FIXME: Unimplemented - get({!r})".format(name))
-    logging.error("Please get the name of snippet - get({})".format(name))
-    return ""
-
-
+    logging.info("getting snippet {!r}".format(name))
+    cursor = connection.cursor()
+    cursor.execute("select message from snippets where keyword=%s",(name,))
+    row = cursor.fetchone()
+    connection.commit()
+    logging.debug("snippet fetched successfully.")
+    return row[0]
+    
 def main():
     logging.info("hello")
     parser = argparse.ArgumentParser(description = 'store retreive snippet of text')
@@ -41,6 +42,9 @@ def main():
     put_parser.add_argument("name",help="name of the snippet")
     put_parser.add_argument("snippet",help="Snippet text")
     
+    logging.debug("constructing subparser get command")
+    get_parser = subparser.add_parser("get",help="getting a snippet")
+    get_parser.add_argument("name",help="name of the snippet")
     
     arguments = parser.parse_args()
     
@@ -52,11 +56,9 @@ def main():
         name,snippet = put(**arguments)
         print ("Store {!r} ad {!r}".format(snippet,name))
     elif command == "get":
-        snippet == get(**arguments)
+        snippet = get(**arguments)
         print ("retreived snippet: {!r}".format(snippet))
-    
-    
     
 if __name__ == '__main__':
     main()
-
+    
