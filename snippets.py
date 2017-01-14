@@ -2,13 +2,11 @@ import argparse
 import logging
 import psycopg2
 
-
 # Set the log output file, and the log level
 logging.basicConfig(filename="snippets.log", level=logging.DEBUG)
 logging.debug("Connecting to PostgresSQL")
 connection = psycopg2.connect(database="snippets")
 logging.debug("connected to PostgresSQL")
-
 
 def put(name, snippet):
     logging.info("Storing snippet {!r}{!r}".format(name,snippet))
@@ -38,8 +36,6 @@ def get(name):
         return "404: Snippet Not Found"
     return row[0]
     
-    
-    
 def no_arg():
     logging.info("getting default snippet ".format())
     with connection,connection.cursor() as cursor:
@@ -48,7 +44,6 @@ def no_arg():
         row = cursor.fetchall()
     logging.debug("default snippet fecthed successfully")
     return row
-    
     
 def main():
     logging.info("hello")
@@ -59,22 +54,22 @@ def main():
     #usage python3 .py --type put --name list --snippet "A sequence of things - created using[]"
     #python3 snippets.py put list "A sequence of thing - created using []"
     
+    #put method
     logging.debug("constructing subparser put command")
     put_parser = subparser.add_parser("put",help="Store a snippet")
     put_parser.add_argument("name",help="name of the snippet")
     put_parser.add_argument("snippet",help="Snippet text")
     
+    #get method
     logging.debug("constructing subparser get command")
     get_parser = subparser.add_parser("get",help="getting a snippet")
     get_parser.add_argument("name",help="name of the snippet")
-    #get_parser.add_argument("all",default=None)
     
-    
+    #no_arg method
     logging.debug("constructing subparser for no arguments")
     no_parser = subparser.add_parser("no_arg",help="just put none")
-    
 
-    
+    #parsing the arguments
     arguments = parser.parse_args()
     
     # Convert parsed arguments from Namespace to dictonary
@@ -92,9 +87,6 @@ def main():
         snippet = no_arg(**arguments)
         for item in snippet:
             print ("{!r}".format(item))
-            
-        
     
 if __name__ == '__main__':
     main()
-    
