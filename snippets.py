@@ -45,7 +45,6 @@ def no_arg():
     logging.debug("default snippet fecthed successfully")
     return row
     
-    
 def search(name):
     logging.info("searching snippet")
     with connection,connection.cursor() as cursor:
@@ -83,7 +82,6 @@ def main():
     search_parser = subparser.add_parser("search",help="search with snippet")
     search_parser.add_argument("name",help="search element")
     
-
     #parsing the arguments
     arguments = parser.parse_args()
     
