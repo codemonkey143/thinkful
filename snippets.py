@@ -41,8 +41,17 @@ def no_arg():
     with connection,connection.cursor() as cursor:
         cursor.execute("select * from snippets order by keyword")
         #cursor.execute("select message from snippets where keyword=%s",('delete',))
-        row = cursor.fetchall()
+        row = cursor.fetchone()
     logging.debug("default snippet fecthed successfully")
+    return row
+    
+    
+def search(name):
+    logging.info("searching snippet")
+    with connection,connection.cursor() as cursor:
+        cursor.execute("select * from snippets where keyword LIKE '%delete%'")
+        row = cursor.fetchall()
+    logging.debug("fecthed successfully")
     return row
     
 def main():
@@ -68,6 +77,12 @@ def main():
     #no_arg method
     logging.debug("constructing subparser for no arguments")
     no_parser = subparser.add_parser("no_arg",help="just put none")
+    
+    #search method:
+    logging.debug("constructing subparser for search argument")
+    search_parser = subparser.add_parser("search",help="search with snippet")
+    search_parser.add_argument("name",help="search element")
+    
 
     #parsing the arguments
     arguments = parser.parse_args()
@@ -87,6 +102,9 @@ def main():
         snippet = no_arg(**arguments)
         for item in snippet:
             print ("{!r}".format(item))
+    elif command == "search":
+        snippet = search(**arguments)
+        print("your result:{!r}".format(snippet))
     
 if __name__ == '__main__':
     main()
