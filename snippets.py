@@ -12,7 +12,7 @@ logging.debug("connected to PostgresSQL")
 
 def put(name, snippet):
     logging.info("Storing snippet {!r}{!r}".format(name,snippet))
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
     with connection,connection.cursor() as cursor:
         try:
             command = "insert into snippets values (%s, %s)"
@@ -20,36 +20,35 @@ def put(name, snippet):
         except psycopg2.IntegrityError as e:
             connection.rollback()
             command = "update snippets set message=%s where keyword=%s"
-     
-    '''        cursor.execute(command,(name,snippet))
-    try:
-        command = "insert into snippets values (%s, %s)"
-        cursor.execute(command,(name,snippet))
-    except psycopg2.IntegrityError as e:
-        connection.rollback()
-        command = "update snippets set message=%s where keyword=%s"
-        cursor.execute(command,(name,snippet))
-    connection.commit()
-    '''
     
     logging.debug("snippet stored successfully.")
     return name,snippet
     
 def get(name):
     logging.info("getting snippet {!r}".format(name))
-    '''
-    cursor = connection.cursor()
-    cursor.execute("select message from snippets where keyword=%s",(name,))
-    row = cursor.fetchone()
-    '''
     with connection,connection.cursor() as cursor:
-        cursor.execute("select message from snippets where keyword=%s",(name,))
-        row = cursor.fetchone()
-    #connection.commit()
+        if name:
+            cursor.execute("select message from snippets where keyword=%s",(name,))
+            row = cursor.fetchone()
+        else:
+            cursor.execute("select message from snippet where keyword=%s",(list,))
+    
     logging.debug("snippet fetched successfully.")
     if not row:
         return "404: Snippet Not Found"
     return row[0]
+    
+    
+    
+def no_arg():
+    logging.info("getting default snippet ".format())
+    with connection,connection.cursor() as cursor:
+        cursor.execute("select * from snippets order by keyword")
+        #cursor.execute("select message from snippets where keyword=%s",('delete',))
+        row = cursor.fetchall()
+    logging.debug("default snippet fecthed successfully")
+    return row
+    
     
 def main():
     logging.info("hello")
@@ -68,6 +67,13 @@ def main():
     logging.debug("constructing subparser get command")
     get_parser = subparser.add_parser("get",help="getting a snippet")
     get_parser.add_argument("name",help="name of the snippet")
+    #get_parser.add_argument("all",default=None)
+    
+    
+    logging.debug("constructing subparser for no arguments")
+    no_parser = subparser.add_parser("no_arg",help="just put none")
+    
+
     
     arguments = parser.parse_args()
     
@@ -81,6 +87,13 @@ def main():
     elif command == "get":
         snippet = get(**arguments)
         print ("retreived snippet: {!r}".format(snippet))
+    elif command == "no_arg":
+        print ("retrived snippet")
+        snippet = no_arg(**arguments)
+        for item in snippet:
+            print ("{!r}".format(item))
+            
+        
     
 if __name__ == '__main__':
     main()
