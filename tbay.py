@@ -11,25 +11,12 @@ Base = declarative_base()
 
 
 class Item(Base):
+      
     __tablename__ = "items"
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     description = Column(String)
     start_time = Column(DateTime, default=datetime.utcnow)
-    
-    '''
-    Challenge: Create the usermodel & bidmodels
-    Try to create the two further models which you will use for the auction site.The user model should contain three columns:
-    usermodel
-    integer id,which is the primary key
-    A username string, which cannot be null 
-    A password string, which cannot be null
-    
-    The bid model(should contain two columns) 
-    An integer id, which is the primary key 
-    A floating-point price, which cannot be null
-    '''
-    
     
     __tablename__ = "bidmodel"
     id = Column(Integer,primary_key=True)
