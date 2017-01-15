@@ -11,7 +11,6 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime,Float
 
 class Item(Base):
-    
     __tablename__ = "items"
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
@@ -29,5 +28,4 @@ class Bid(Base):
     id = Column(Integer,primary_key=True)
     price = Column(Float,nullable=False)
     
-
 Base.metadata.create_all(engine)
