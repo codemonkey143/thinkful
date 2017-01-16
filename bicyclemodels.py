@@ -6,7 +6,6 @@ class bicyclemodel(bicycle):
         self.customerName = customerName
         super(bicyclemodel,self).__init__(model,year,cost)
         
-        
 bicycle1 = bicyclemodel("daniel","hiking",2015,2000)
 
 customerDetails = bicycle1.__dict__
