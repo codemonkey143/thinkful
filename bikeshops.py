@@ -3,7 +3,6 @@ import settings as st
 #from pandas import Series,DataFrame
 #import pandas as pd
 
-
 class bikeshop(bicycle):
     
    def __init__(self,modelName,inventory,margin,profit,weight,cost):
