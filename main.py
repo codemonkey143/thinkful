@@ -1,12 +1,12 @@
 from bicycles import bicycle
 from bikeshops import bikeshop
 from customers import customer
-from pandas import Series,DataFrame
+
 
 def main():
     
     print ("Hey I am main method")
-    uday = bikeshop("racing",30,40,90)
+    uday = bikeshop("racing",30,40,90,20,500)
     uday.bicycle_model()
     uday.final_price()
 

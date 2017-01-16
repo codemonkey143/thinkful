@@ -1,7 +1,7 @@
 from bikeshops import bikeshop
 from bicycles import bicycle
 import settings as sc
-import pandas as pd
+#import pandas as pd
 
 class customer(object):
     
@@ -31,7 +31,8 @@ class customer(object):
                         list2.append(sellPrice - sc.stock[key2])
                         sc.customer_sheet[key1].append(list2)
         print ("each customer can affordable bellow:")
-        print (pd.DataFrame(sc.customer_sheet.items()))
+        #print (pd.DataFrame(sc.customer_sheet.items()))
+        print(sc.customer_sheet)
         #print (key1,"has affordable to buy:","\n",key2,"\n","price is:",stock[key2] + 0.5 * stock[key2],"\n","seller_profit:",sellPrice - stock[key2])
     
     def purchased_bikes(self,customerName,customerAmount,model):
@@ -69,5 +70,8 @@ class customer(object):
                     
         print ("-----------------remaining stock------------------")
         
-        print(pd.DataFrame(temp_stock.items(),columns=['bicycle model','price']))
-        
+        #print(pd.DataFrame(temp_stock.items(),columns=['bicycle model','price']))
+        #print (temp_stock)
+        print ("BicycleModelName        Price")
+        for i in temp_stock:
+            print ("{}     {}".format(i,temp_stock[i]))

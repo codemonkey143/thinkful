@@ -1,8 +1,9 @@
-from pandas import Series,DataFrame
-import pandas as pd
+#from pandas import Series,DataFrame
+#import pandas as pd
 
 class bicycle(object):
     
+    #unlimited method you can add any number variables you want to use
     def __init__(self,modelName,weight,cost):
         self.modelName = modelName
         self.weight = weight
