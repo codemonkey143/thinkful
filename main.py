@@ -2,7 +2,6 @@ from bicycles import bicycle
 from bikeshops import bikeshop
 from customers import customer
 
-
 def main():
     
     print ("Hey I am main method")
@@ -17,8 +16,6 @@ def main():
     uday.purchased_bikes("srinu",700,"human-powered")
     uday.total_profit()
     uday.remaining_stock()
-    
-    print ("ending main method")
     
 if __name__ == '__main__':
     main()
