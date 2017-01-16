@@ -27,5 +27,9 @@ customer_sheet = {}
 
 global totalProfit
 totalProfit = []
+
 global selled_bicycles
 selled_bicycles = []
+
+global customers
+customers = {"daniel":200,"david":500,"johny":1000}

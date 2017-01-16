@@ -11,10 +11,9 @@ class customer(object):
         self.newbicycle = newbicycle
         
     def customer_inventory(self):
-        customers = {"daniel":200,"david":500,"johny":1000}
-        for key1 in customers:
+        for key1 in sc.customers:
             for key2 in sc.stock:
-                if customers[key1] >= sc.stock[key2]:
+                if sc.customers[key1] >= sc.stock[key2]:
                     sellPrice = sc.stock[key2] + 0.5 * sc.stock[key2]
                     if key1 not in sc.customer_sheet:
                         global list1 
