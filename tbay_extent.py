@@ -3,8 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import Integer,String,Date,Column,Table,ForeignKey,Float
 from datetime import datetime
+import psycopg2
+import logging
 
-engine = create_engine('postgresql://ubuntu:thinkful@localhost:5432/ebay')
+# creating tables into tbay database
+engine = create_engine('postgresql://ubuntu:thinkful@localhost:5432/tbay')
 Session = sessionmaker(bind = engine)
 session = Session()
 Base = declarative_base()
@@ -46,38 +49,20 @@ user3 = Users(name="mohit")
 auctionItem1 = AuctionItems(name="baseball")
 user1.auctionItems.append(auctionItem1)
 
-#auctionItem2 = AuctionItems(name="baseball")
-#user1.auctionItems.append(auctionItem2)
-
 bidItem1 = BidItems(name="baseball")
 #bidItem2 = BidItems(name="cellphone",cost=700)
 user1_bid = BidItems(name="baseball",cost=200)
 user2_bid = BidItems(name="baseball",cost=300)
 bidItem1.bidItems = [user1_bid,user2_bid]
 
-
-#session.add_all([user1,user2,user3,auctionItem1,bidItem1,user1_bid,user2_bid])
-
-#session.commit()
-
-#print (user1.name)
-#print (user2.name)
-
 for user in user1.auctionItems:
     print (user.name)
-    
-#print (auctionItem1.user.name)
 
 for bid in user1.bidItems:
     print(bid.name)
     print(bid.cost)
 
-
-# Returns the first user
-
 print ("Using psycopg2...")
-import psycopg2
-import logging
 
 logging.debug("Conneccting to PostgreSQL")
 connection = psycopg2.connect(database="ebay")
