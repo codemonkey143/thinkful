@@ -3,6 +3,12 @@ from os import environ
 
 app = Flask(__name__)
 
+'''
+@app.route("/")
+def hi_person():
+    return "welcome to the new coding world"
+'''
+
 @app.route("/hello/<name>")
 
 def hi_person(name):
