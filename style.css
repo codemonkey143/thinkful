@@ -34,12 +34,12 @@ body{
 .introduction-section,
 .content-footer,
 .location-section,
-.question-section{
+.questions-section{
   max-width: 38em;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2em;
-  text-align:center;
+  
 }
 
 ul
@@ -52,8 +52,12 @@ ul
 .social > li {
     display: inline-block;
 }
-.introduction-section > p,
-.location-section > p,
+.introduction-section > p{
+  color: black;
+}
+.location-section > p{
+  color: black;
+}
 .content-footer > p{
     color: white;
     font-weight: 300;
@@ -61,26 +65,39 @@ ul
     
   }
 .questions-section > h2 {
+    color: #FFC300    ;
     font-family: "Gentium Book Basic", Georgia, serif;
     font-size: 1.2em;
     font-weight: bold;
     /* Layout */
     margin: 2em 0 1em 0;
   }
- section > h1 {
+ .section > h1 {
     margin-top: 2em;
   }
+  
+ .introduction-section > h1 {
+   color: #FFC300;
+ }
 
+ .location-section > h1{
+   color: #FFC300;
+ }
+ 
+ .questions-section > h1{
+   color: #FFC300;
+ }
 .content-footer {
   /* Red, Green, Blue: #RRGGBB */
-  clear: both;
-  height: 200px;
-  width: 100%;
-  background-color: #000;
-  color:#fff;
-
+  background-color: #995533;
 }
+
 h1{
-  color:#FF0000;
+  color:#900C3F ;
   
+}
+.shadow {
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;
 }
